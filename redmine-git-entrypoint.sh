@@ -11,12 +11,12 @@ if [ ! -e /usr/src/redmine/plugins/redmine_git_hosting ]; then
 	cd /usr/src/redmine/plugins
 	git clone https://github.com/jbox-web/redmine_bootstrap_kit.git
 	cd redmine_bootstrap_kit
-	chekcout 95ede96e7e011488bd421dfda95af2631bd5313b # Commits on Mar 29, 2017
+	git checkout `git rev-list -n 1 --before="2017-06-30 00:00" devel`
 
 	cd /usr/src/redmine/plugins
 	git clone https://github.com/jbox-web/redmine_git_hosting.git
 	cd redmine_git_hosting
-	checkout 905e512a06e6b4f1806d6d72b729d9d72d205520 # Commits on Apr 10, 2017
+	git checkout `git rev-list -n 1 --before="2017-06-30 00:00" devel`
 
 	# rdoc comment & add rspec
 	#

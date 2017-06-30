@@ -41,7 +41,7 @@ ARG VCS_REF
 ARG REDMINE_GIT_VERSION
 LABEL \
 	org.label-schema.build-date="$BUILD_DATE" \
-	org.label-schema.description="Redmine + redmine_git_hosting plugin" \
+	org.label-schema.description="Redmine + redmine-git-hosting plugin" \
 	org.label-schema.name="redmine-git" \
 	org.label-schema.schema-version="1.0" \
 	org.label-schema.url="https://hub.docker.com/r/buxis/redmine-git" \
