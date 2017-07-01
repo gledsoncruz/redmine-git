@@ -5,12 +5,12 @@ if [ $? != 0 ]; then
 	exit
 fi
 
+./version.local $1
+
 git add *
 git commit
+git push
 
-git push origin/master
-
-./version.local $1
 ./build.local $1
 
 docker tag redmine-git:$1 redmine-git
