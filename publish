@@ -1,0 +1,21 @@
+#!/bin/bash
+
+docker login
+if [ $? != 0 ]; then
+	exit
+fi
+
+git commit
+
+git push origin/master
+
+./version.local $1
+./build.local $1
+
+docker tag redmine-git:$1 redmine-git
+
+docker push buxis/redmine-git:$1
+docker push buxis/redmine-git
+
+docker logout
+

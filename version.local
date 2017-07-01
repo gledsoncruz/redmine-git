@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ "$#" -ne 1 ]; then
+        echo "Usage: ./$0 1.2.3.4"
+	exit 1
+fi
+
+sed -i "s/^ENV REDMINE_GIT_VERSION.*/ENV REDMINE_GIT_VERSION $1/" Dockerfile
+
