@@ -38,7 +38,7 @@ RUN chmod +x /redmine-git-entrypoint.sh
 
 ARG BUILD_DATE
 ARG VCS_REF
-ARG REDMINE_GIT_VERSION
+ENV REDMINE_GIT_VERSION 3.3.3.2
 LABEL \
 	org.label-schema.build-date="$BUILD_DATE" \
 	org.label-schema.description="Redmine + redmine-git-hosting plugin" \
