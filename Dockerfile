@@ -51,6 +51,8 @@ LABEL \
 	org.label-schema.version="$REDMINE_GIT_VERSION"
 
 VOLUME /home/git/repositories
+ENV GIT_UID 998
+ENV GIT_GID 998
 
 ENTRYPOINT ["/redmine-git-entrypoint.sh"]
 CMD ["rails", "server", "-b", "0.0.0.0"]

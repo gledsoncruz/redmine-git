@@ -35,7 +35,7 @@ fi
 if [ ! -e /usr/src/redmine/.rghp_migrated ]; then
 	cd /usr/src/redmine
 	bundle exec rake redmine:plugins:migrate RAILS_ENV=production NAME=redmine_git_hosting
-	toucn .rghp_migrated
+	touch .rghp_migrated
 fi
 
 # If the redmine's home directory does not exist, create it and change ownership.
@@ -56,7 +56,9 @@ fi
 # If the user does not exist, create it.
 #
 if [ -z $(getent passwd git) ]; then
-	useradd -m git
+	groupadd -g $GIT_GID git && useradd -m -u $GIT_UID -g $GIT_GID git
+	cp /etc/skel/.[a-z]* /home/git
+	chown -R git:git /home/git
 fi
 
 # If gitolite is not installed,
