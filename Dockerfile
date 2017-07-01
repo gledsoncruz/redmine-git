@@ -38,7 +38,7 @@ RUN chmod +x /redmine-git-entrypoint.sh
 
 ARG BUILD_DATE
 ARG VCS_REF
-ENV REDMINE_GIT_VERSION 3.3.3.2
+ENV REDMINE_GIT_VERSION 3.3.3.3
 LABEL \
 	org.label-schema.build-date="$BUILD_DATE" \
 	org.label-schema.description="Redmine + redmine-git-hosting plugin" \
@@ -49,6 +49,8 @@ LABEL \
 	org.label-schema.vcs-ref="$VCS_REF" \
 	org.label-schema.vendor="buxis.gq" \
 	org.label-schema.version="$REDMINE_GIT_VERSION"
+
+VOLUME /home/git/repositories
 
 ENTRYPOINT ["/redmine-git-entrypoint.sh"]
 CMD ["rails", "server", "-b", "0.0.0.0"]

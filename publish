@@ -5,6 +5,7 @@ if [ $? != 0 ]; then
 	exit
 fi
 
+git add *
 git commit
 
 git push origin/master
@@ -16,6 +17,9 @@ docker tag redmine-git:$1 redmine-git
 
 docker push buxis/redmine-git:$1
 docker push buxis/redmine-git
+
+docker tag redmine-git:$1 buxis/redmine-git:$1
+docker tag redmine-git buxis/redmine-git
 
 docker logout
 
