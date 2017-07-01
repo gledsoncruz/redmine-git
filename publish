@@ -7,9 +7,9 @@ fi
 
 ./version.local $1
 
-git add *
-git commit
-git push
+#git add *
+#git commit
+#git push
 
 ./build.local $1
 
