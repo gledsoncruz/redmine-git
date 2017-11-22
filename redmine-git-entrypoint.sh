@@ -1,36 +1,15 @@
 #!/bin/bash
 
+# If ssh host key is not exist, regenerate it.
+#
+DEBIAN_FRONTEND=noninteractive dpkg-reconfigure openssh-server
+
 service ssh start
 
 # Initialize redmine, @@@ ignore error
 #
 echo `pwd`
-/docker-entrypoint.sh rails
-
-if [ ! -e /usr/src/redmine/plugins/redmine_git_hosting ]; then
-	cd /usr/src/redmine/plugins
-	git clone https://github.com/jbox-web/redmine_bootstrap_kit.git
-	cd redmine_bootstrap_kit
-	git checkout `git rev-list -n 1 --before="2017-06-30 00:00" devel`
-
-	cd /usr/src/redmine/plugins
-	git clone https://github.com/jbox-web/redmine_git_hosting.git
-	cd redmine_git_hosting
-	git checkout `git rev-list -n 1 --before="2017-06-30 00:00" devel`
-
-	# rdoc comment & add rspec
-	#
-	sed -i 's/\(^.*rdoc.*$\)/#\1/' ./redmine_git_hosting/Gemfile
-	echo "gem 'rspec'" >> ./redmine_git_hosting/Gemfile
-	echo "gem 'rspec-rails'" >> ./redmine_git_hosting/Gemfile
-
-	cd /usr/src/redmine
-
-	bundle install --without development test
-
-	#@@@ sperate install, migrate
-	bundle exec rake redmine:plugins:migrate RAILS_ENV=production NAME=redmine_git_hosting
-fi
+/docker-entrypoint.sh rails -v
 
 if [ ! -e /usr/src/redmine/.rghp_migrated ]; then
 	cd /usr/src/redmine
