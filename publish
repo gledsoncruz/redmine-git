@@ -13,13 +13,13 @@ fi
 
 ./build.local $1
 
-docker tag redmine-git:$1 redmine-git
+docker tag redmine-git-hosting:$1 redmine-git-hosting
 
-docker push buxis/redmine-git:$1
-docker push buxis/redmine-git
+docker push gledsoncruz/redmine-git-hosting:$1
+docker push gledsoncruz/redmine-git-hosting
 
-docker tag redmine-git:$1 buxis/redmine-git:$1
-docker tag redmine-git buxis/redmine-git
+docker tag redmine-git-hosting:$1 gledsoncruz/redmine-git-hosting:$1
+docker tag redmine-git-hosting gledsoncruz/redmine-git-hosting
 
 docker logout
 

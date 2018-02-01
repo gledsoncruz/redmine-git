@@ -13,7 +13,9 @@ echo `pwd`
 
 if [ ! -e /usr/src/redmine/.rghp_migrated ]; then
 	cd /usr/src/redmine
-	bundle exec rake redmine:plugins:migrate RAILS_ENV=production NAME=redmine_git_hosting
+#	bundle exec rake redmine:plugins:migrate RAILS_ENV=production NAME=redmine_git_hosting
+#	bundle exec rake redmine:plugins:migrate RAILS_ENV=production NAME=advanced_roadmap_v2
+	bundle exec rake redmine:plugins:migrate RAILS_ENV=production
 	touch .rghp_migrated
 fi
 

@@ -1,14 +1,14 @@
-FROM redmine:3.4.3
+FROM redmine:3.3.1
 
 EXPOSE 22
 
 WORKDIR /usr/src/redmine
 
 RUN	apt-get update && apt-get install -y --no-install-recommends \
+		cmake \
 		build-essential \
 		libssh2-1 \
 		libssh2-1-dev \
-		cmake \
 		libgpg-error-dev \
 		pkg-config \
 		openssh-server \
@@ -19,6 +19,7 @@ RUN	apt-get update && apt-get install -y --no-install-recommends \
 RUN	LG='\033[1;32m' && NC='\033[0m' \
 	&& cd /usr/src/redmine/plugins && echo $LG`pwd`$NC \
 	&& git clone https://github.com/jbox-web/redmine_bootstrap_kit.git \
+	&& git clone https://github.com/Coren/redmine_advanced_roadmap_v2.git advanced_roadmap_v2 \
 	&& cd redmine_bootstrap_kit && echo $LG`pwd`$NC \
 	&& git checkout 0.2.5 \
 	&& cd /usr/src/redmine/plugins && echo $LG`pwd`$NC \
@@ -40,12 +41,9 @@ ENV REDMINE_GIT_VERSION 3.4.3.0
 LABEL \
 	org.label-schema.build-date="$BUILD_DATE" \
 	org.label-schema.description="Redmine + redmine-git-hosting plugin" \
-	org.label-schema.name="redmine-git" \
+	org.label-schema.name="redmine-git-hosting" \
 	org.label-schema.schema-version="1.0" \
-	org.label-schema.url="https://hub.docker.com/r/buxis/redmine-git" \
-	org.label-schema.vcs-url="https://github.com/buxis/redmine-git" \
-	org.label-schema.vcs-ref="$VCS_REF" \
-	org.label-schema.vendor="buxis.gq" \
+	org.label-schema.url="https://hub.docker.com/r/gledsoncruz/redmine-git-hosting/" \
 	org.label-schema.version="$REDMINE_GIT_VERSION"
 
 VOLUME /home/git/repositories
